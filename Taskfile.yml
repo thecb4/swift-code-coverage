@@ -1,0 +1,37 @@
+# https://taskfile.dev
+
+version: "3"
+
+tasks:
+  clean:
+    cmds:
+      - rm -rf .build
+
+  format:
+    cmds:
+      - swift package plugin --allow-writing-to-package-directory format-source-code --targets CodeCoverageKit CodeCoverageKitTests
+
+  lint:
+    cmds:
+      - swift package plugin lint-source-code --targets CodeCoverageKit CodeCoverageKitTests
+
+  build:
+    cmds:
+      - swift build --enable-code-coverage --build-tests
+
+  test:
+    cmds:
+      - swift test --skip-build --enable-code-coverage
+
+  coverage-path:
+    cmds:
+      - swift test --show-codecov-path
+
+  documentation:
+    cmds:
+      - |
+        swift package \
+        --allow-writing-to-directory ./docs \
+        generate-documentation \
+        --target CodeCoverageKit \
+        --output-path ./docs
