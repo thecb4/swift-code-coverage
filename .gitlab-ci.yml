@@ -1,0 +1,34 @@
+stages:
+  - review
+  - build
+  - test
+  - document
+
+before_script:
+  - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+
+review:
+  stage: review
+  script:
+    - task review
+
+build:
+  stage: build
+  script:
+    - task build
+  cache:
+    paths:
+      - .build/
+
+test:
+  stage: test
+  script:
+    - task test
+  cache:
+    paths:
+      - .build/
+
+document:
+  stage: document
+  script:
+    - task document

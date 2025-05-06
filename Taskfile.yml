@@ -15,6 +15,11 @@ tasks:
     cmds:
       - swift package plugin lint-source-code --targets CodeCoverageKit CodeCoverageKitTests
 
+  review:
+    cmds:
+      - task: format
+      - task: lint
+
   build:
     cmds:
       - swift build --enable-code-coverage --build-tests
@@ -27,7 +32,7 @@ tasks:
     cmds:
       - swift test --show-codecov-path
 
-  documentation:
+  document:
     cmds:
       - |
         swift package \
