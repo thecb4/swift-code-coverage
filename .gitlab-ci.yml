@@ -7,6 +7,10 @@ stages:
   - document
 
 before_script:
+  - |
+    apt-get update && \
+    apt-get -y install \
+    curl
   - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
 
 review:
