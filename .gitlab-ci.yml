@@ -1,3 +1,5 @@
+image: swift:6.1.0
+
 stages:
   - review
   - build
