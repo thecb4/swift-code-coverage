@@ -10,7 +10,7 @@ struct CoverageModelSuite {
 
   // MARK: - LLVMCoverageReport
 
-  @Test("LLVMCoverageReport decodes full report structure")
+  @Test("CoverageReport decodes full report structure")
   func testLLVMCoverageReportDecoding() throws {
     let data = try TestUtilities.fixtureData(named: "coverage")
     let report = try JSONDecoder().decode(CoverageReport.self, from: data)
@@ -146,5 +146,12 @@ struct CoverageModelSuite {
     #expect(throws: DecodingError.self) {
       _ = try JSONDecoder().decode(FileCoverage.self, from: json.data(using: .utf8)!)
     }
+  }
+
+  @Test("Report Description")
+  func testReportDescription() throws {
+    let data = try TestUtilities.fixtureData(named: "coverage")
+    let report = try JSONDecoder().decode(CoverageReport.self, from: data)
+    print("\(report)")
   }
 }

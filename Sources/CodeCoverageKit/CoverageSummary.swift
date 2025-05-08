@@ -35,3 +35,8 @@ extension CoverageSummary {
     )
   }
 }
+
+extension CoverageSummary {
+  public static let defaultThreshold = 80.0
+  public static let defaultCoverageFilePath = "coverage.json"
+}

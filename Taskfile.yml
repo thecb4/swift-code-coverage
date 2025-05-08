@@ -9,11 +9,19 @@ tasks:
 
   format:
     cmds:
-      - swift package plugin --allow-writing-to-package-directory format-source-code --targets CodeCoverageKit CodeCoverageKitTests
+      - |
+        swift package plugin --allow-writing-to-package-directory format-source-code --targets \
+        CodeCoverageKit CodeCoverageKitTests \
+        CodeCoverageTool CodeCoverageToolTests \
+        CodeCoveragePlugin
 
   lint:
     cmds:
-      - swift package plugin lint-source-code --targets CodeCoverageKit CodeCoverageKitTests
+      - |
+        swift package plugin lint-source-code --targets \
+        CodeCoverageKit CodeCoverageKitTests \
+        CodeCoverageTool CodeCoverageToolTests \
+        CodeCoveragePlugin
 
   review:
     cmds:
@@ -40,3 +48,10 @@ tasks:
         generate-documentation \
         --target CodeCoverageKit \
         --output-path ./docs
+
+  pipeline:
+    cmds:
+      - task: review
+      - task: build
+      - task: test
+      - task: document

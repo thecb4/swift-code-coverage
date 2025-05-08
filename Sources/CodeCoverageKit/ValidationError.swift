@@ -1,10 +1,10 @@
 import Foundation
 
-internal enum ValidationError: Error, LocalizedError {
+public enum ValidationError: Error, LocalizedError, Equatable {
   case thresholdNotMet(current: Double, required: Double)
   case invalidInput(String)
 
-  var errorDescription: String? {
+  public var errorDescription: String? {
     switch self {
     case .thresholdNotMet(let current, let required):
       return "Coverage below threshold: \(current)% < \(required)%"

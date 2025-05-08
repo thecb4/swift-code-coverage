@@ -1,5 +1,5 @@
 {
-  "originHash" : "59cbb22b86794ea72a1a71b6b64d8e25e63e1b754cc5922aaa8181c3f9956c16",
+  "originHash" : "4689bef4721c64dc0fc2aa5456a22c0e38a2fd2f1435528f6f2aa0e988d61610",
   "pins" : [
     {
       "identity" : "swift-argument-parser",
@@ -62,6 +62,15 @@
       "state" : {
         "revision" : "f99ae8aa18f0cf0d53481901f88a0991dc3bd4a2",
         "version" : "601.0.1"
+      }
+    },
+    {
+      "identity" : "swift-system",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-system",
+      "state" : {
+        "revision" : "a34201439c74b53f0fd71ef11741af7e7caf01e1",
+        "version" : "1.4.2"
       }
     }
   ],

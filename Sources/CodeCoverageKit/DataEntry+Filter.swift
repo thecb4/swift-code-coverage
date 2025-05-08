@@ -1,5 +1,3 @@
-import CodeCoverageKit
-
 extension DataEntry {
   func filtered(filteredFrom original: DataEntry, includeDependencies: Bool = false) -> Self {
     guard !includeDependencies else { return self }
