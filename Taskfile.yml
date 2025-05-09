@@ -28,9 +28,10 @@ tasks:
       - task: format
       - task: lint
 
-  build:
+  build:debug:
     cmds:
       - swift build --enable-code-coverage --build-tests
+      - mkdir -p .build/debug/codecov
 
   test:
     cmds:
@@ -49,9 +50,26 @@ tasks:
         --target CodeCoverageKit \
         --output-path ./docs
 
+  binary:uninstall:
+    cmds:
+      - rm -rf /user/loca/bin/swift-coverage-review
+
+  build:release:
+    cmds:
+      - swift build -c release
+
+  binary:install:
+    cmds:
+      - task: binary:uninstall
+      - task: build:release
+      - sudo cp "{{.EXECUTABLE_BUILD_BIN_PATH}}/swift-coverage-review" /usr/local/bin/swift-coverage-review
+    vars:
+      EXECUTABLE_BUILD_BIN_PATH:
+        sh: swift build -c release --show-bin-path
+
   pipeline:
     cmds:
       - task: review
-      - task: build
+      - task: build:debug
       - task: test
       - task: document
