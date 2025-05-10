@@ -152,6 +152,14 @@ struct CoverageModelSuite {
   func testReportDescription() throws {
     let data = try TestUtilities.fixtureData(named: "coverage")
     let report = try JSONDecoder().decode(CoverageReport.self, from: data)
-    print("\(report)")
+
+    let review = CoverageReview(for: report)
+    let reporter = TextCoverageReporter(for: review)
+
+    let summary = try reporter.summarize()
+    let details = try reporter.detail()
+
+    print(summary)
+    print(details)
   }
 }

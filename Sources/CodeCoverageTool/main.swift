@@ -10,9 +10,16 @@ internal struct CodeCoverageTool: ParsableCommand {
 
     let review = try CoverageReview(from: inputPath)
 
-    let totalCoverage = review.totalCoverage
+    let reporter = TextCoverageReporter(for: review)
 
-    print("\(review.report)")
+    let summary = try reporter.summarize()
+
+    let details = try reporter.detail()
+
+    print("\(summary)")
+    print("\(details)")
+
+    let totalCoverage = review.totalCoverage
 
     try validateCoverageByThreshold(totalCoverage)
 

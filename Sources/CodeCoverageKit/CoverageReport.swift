@@ -9,26 +9,3 @@ public struct CoverageReport: Codable, Equatable {
   /// The version string of the coverage report format.
   public let version: String
 }
-
-extension CoverageReport: CustomStringConvertible {
-
-  /// The description of the Coverage Report
-  public var description: String {
-
-    var details = "\n"
-
-    details += "Coverage Report (\(self.type) v\(self.version))\n"
-    details += "================================================\n"
-
-    for entry in self.data {
-      details += "\nTarget Coverage Summary:\n"
-      details += "-----------------------\n"
-      details += String(format: "Lines:    %6.1f%%\n", entry.totals.lines.percent)
-      details += String(format: "Functions:%6.1f%%\n", entry.totals.functions.percent)
-      details += String(format: "Branches: %6.1f%%\n", entry.totals.branches.percent)
-    }
-
-    return details
-
-  }
-}

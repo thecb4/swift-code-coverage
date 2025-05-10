@@ -30,8 +30,8 @@ tasks:
 
   build:debug:
     cmds:
-      - swift build --enable-code-coverage --build-tests
       - mkdir -p .build/debug/codecov
+      - swift build --enable-code-coverage --build-tests
 
   test:
     cmds:
