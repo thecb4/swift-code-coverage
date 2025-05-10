@@ -43,10 +43,8 @@ tasks:
 
   test:coverage:
     cmds:
-      - task: build:release
-      - task: binary:install
+      - task: binary:install:local
       - swift package plugin code-coverage-review {{ .COVERAGE_PATH }} --threshold 85
-      - task: binary:uninstall
     vars:
       COVERAGE_PATH:
         sh: swift test --show-codecov-path
@@ -77,10 +75,21 @@ tasks:
       EXECUTABLE_BUILD_BIN_PATH:
         sh: swift build -c release --show-bin-path
 
+  binary:install:local:
+    cmds:
+      - rm -rf bin
+      - mkdir -p bin\
+      - task: build:release
+      - cp "{{.EXECUTABLE_BUILD_BIN_PATH}}/swift-coverage-review" bin/swift-coverage-review
+    vars:
+      EXECUTABLE_BUILD_BIN_PATH:
+        sh: swift build -c release --show-bin-path
+
   pipeline:
     cmds:
       - task: review
       - task: build:debug
       - task: test
+      - task: binary:install:local
       - task: test:coverage
       - task: document

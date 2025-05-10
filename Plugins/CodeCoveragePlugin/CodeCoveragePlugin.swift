@@ -38,7 +38,7 @@ struct CodeCoveragePlugin: CommandPlugin {
         //let reviewTool = try context.tool(named: "swift-coverage-review")
         let executableName = "swift-coverage-review"
         let cwd = FileManager.default.currentDirectoryPath
-        let executablePath = "\(cwd)/.build/release/\(executableName)"
+        let executablePath = "\(cwd)/bin/\(executableName)"
 
         //let reviewExecutableURL = reviewTool.url
         let reviewExecutableURL = URL(fileURLWithPath: executablePath)
