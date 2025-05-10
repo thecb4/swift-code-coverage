@@ -21,7 +21,7 @@ review:
 build:
   stage: build
   script:
-    - task build
+    - task build:debug
   cache:
     paths:
       - .build/
