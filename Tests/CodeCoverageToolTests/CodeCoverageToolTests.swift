@@ -23,7 +23,7 @@ struct CodeCoverageToolTests {
   @Test func shouldExitWithSuccessfulCoverageCheck() throws {
     try assertExecuteCommand(
       command:
-        "swift-coverage-review  Tests/CodeCoverageToolTests/fixtures/coverage.json --threshold 20",
+        "swift-coverage-review  Tests/CodeCoverageToolTests/fixtures/coverage.json --threshold 80",
       exitCode: EXIT_SUCCESS
     )
   }
@@ -31,7 +31,7 @@ struct CodeCoverageToolTests {
   @Test func shouldExitWithUnsuccessfulCoverageCheck() throws {
     try assertExecuteCommand(
       command:
-        "swift-coverage-review  Tests/CodeCoverageToolTests/fixtures/coverage.json --threshold 50",
+        "swift-coverage-review  Tests/CodeCoverageToolTests/fixtures/coverage.json --threshold 100",
       exitCode: EXIT_FAILURE
     )
   }

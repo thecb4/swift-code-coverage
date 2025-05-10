@@ -41,6 +41,16 @@ tasks:
     cmds:
       - swift test --show-codecov-path
 
+  test:coverage:
+    cmds:
+      - task: build:release
+      - task: binary:install
+      - swift package plugin code-coverage-review {{ .COVERAGE_PATH }} --threshold 85
+      - task: binary:uninstall
+    vars:
+      COVERAGE_PATH:
+        sh: swift test --show-codecov-path
+
   document:
     cmds:
       - |
@@ -72,4 +82,5 @@ tasks:
       - task: review
       - task: build:debug
       - task: test
+      - task: test:coverage
       - task: document

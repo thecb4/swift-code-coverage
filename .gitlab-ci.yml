@@ -30,6 +30,7 @@ test:
   stage: test
   script:
     - task test
+    - task test:coverage
   cache:
     paths:
       - .build/
