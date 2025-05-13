@@ -35,13 +35,13 @@ struct CodeCoveragePlugin: CommandPlugin {
     /// - Throws: A ``PluginError`` if building or running the executable fails.
     func performCommand(context: PluginContext, arguments: [String]) throws {
         // 1. get the tool from the context
-        //let reviewTool = try context.tool(named: "swift-coverage-review")
-        let executableName = "swift-coverage-review"
-        let cwd = FileManager.default.currentDirectoryPath
-        let executablePath = "\(cwd)/bin/\(executableName)"
+        let reviewTool = try context.tool(named: "swift-coverage-review")
+        //let executableName = "swift-coverage-review"
+        //let cwd = FileManager.default.currentDirectoryPath
+        //let executablePath = "\(cwd)/bin/\(executableName)"
 
-        //let reviewExecutableURL = reviewTool.url
-        let reviewExecutableURL = URL(fileURLWithPath: executablePath)
+        let reviewExecutableURL = reviewTool.url
+        //let reviewExecutableURL = URL(fileURLWithPath: executablePath)
         print(reviewExecutableURL)
 
         // 2. start a subprocess for the tool

@@ -43,7 +43,7 @@ tasks:
 
   test:coverage:
     cmds:
-      - task: binary:install:local
+      # - task: binary:install:local
       - swift package plugin code-coverage-review {{ .COVERAGE_PATH }} --threshold 85
     vars:
       COVERAGE_PATH:
@@ -90,6 +90,5 @@ tasks:
       - task: review
       - task: build:debug
       - task: test
-      - task: binary:install:local
       - task: test:coverage
       - task: document

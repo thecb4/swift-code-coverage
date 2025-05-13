@@ -1,7 +1,7 @@
 import Foundation
 import Testing
 
-@testable import CodeCoverageTool
+//@testable import CodeCoverageTool
 
 @Suite("Coverage Code CLI Tests")
 struct CodeCoverageToolTests {

@@ -9,7 +9,7 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(name: "CodeCoverageKit", targets: ["CodeCoverageKit"]),
-        .executable(name: "swift-coverage-review", targets: ["CodeCoverageTool"]),
+        .executable(name: "swift-coverage-review", targets: ["swift-coverage-review"]),
         .plugin(name: "CodeCoveragePlugin", targets: ["CodeCoveragePlugin"])
     ],
     dependencies: [
@@ -29,10 +29,10 @@ let package = Package(
             ],
         ),
         .executableTarget(
-            name: "CodeCoverageTool",
+            name: "swift-coverage-review",
             dependencies: [
                 "CodeCoverageKit"
-            ],
+            ]
         ),
         .plugin(
             name: "CodeCoveragePlugin",
@@ -41,7 +41,10 @@ let package = Package(
                 verb: "code-coverage-review",
                 description: "Analyzes code coverage reports"
               )
-            )
+            ),
+            dependencies: [
+                "swift-coverage-review"
+            ]
         ),
         .testTarget(
             name: "CodeCoverageKitTests",
@@ -53,7 +56,7 @@ let package = Package(
         .testTarget(
             name: "CodeCoverageToolTests",
             dependencies: [
-                "CodeCoverageTool",
+                "swift-coverage-review",
                 "CodeCoverageKit",
                 .product(name: "SystemPackage", package: "swift-system")
             ],
